@@ -34,7 +34,7 @@
         const BUTTON_INTERVAL = 18;
 
         var bg_music = new Audio('Podington_Bear_-_Funk.mp3').play();
-        
+
         function startGame() {
             food = new component(30, 30, "red", 0, 50);
             player = new component(30, 50, "blue", 240, 135);
@@ -128,6 +128,7 @@
                 if (isChinUp) { // going down
                     player.y += 50;
                     isChinUp = false;
+                    var grunt = new Audio('grunt.mp3').play();
                 } else { // going up
                     player.y -= 50;
                     isChinUp = true;
