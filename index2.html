@@ -26,7 +26,8 @@
         var maxEnergy = -100;
         var currEnergy = -100;
         var constEnergyLoss = 0.2;
-        var energyLoss = 5;
+        const energyLoss = 5;
+        const energyGain = 10;
 
         var alive = true;
 
@@ -143,6 +144,7 @@
             }
             if (isChinUp && (food.x > 210 && food.x < 255)) {
                 food.x = 0;
+                currEnergy -= energyGain;
                 console.log("score");
             }
             // ctx.strokeRect(barX, barY, barWidth, maxEnergy);
