@@ -17,42 +17,35 @@
         <script>
             var food;
             var player;
-            
-            // Boolean variable that detects whether the player is up or down
             var isChinUp;
-            
-            // Adds a delay to chin up  
             var chinInterval;
-            
+
             var currEnergy = -100;
             var constENERGY_LOSS = 0.2;
 
-            // Array of food objects pulled from assets folder
             var foodObjects = [
                 {
-                    type: "apple", 
+                    type: "apple",
                     src: "assets/apple.png",
                     energy: 15
-                }, 
+                },
                 {
-                    type: "carrot", 
+                    type: "carrot",
                     src: "assets/carrot.png",
                     energy: 10
-                }, 
+                },
                 {
-                    type: "fish", 
+                    type: "fish",
                     src: "assets/fish.png",
                     energy: 20
-                }, 
+                },
                 {
-                    type: "steak", 
+                    type: "steak",
                     src: "assets/steak.png",
                     energy: 25
-                } 
+                }
             ]
-            
-            // Generates img element in the document body for each 
-            // item in the foodObjects array
+
             foodObjects.forEach(function(item) {
                 var i = document.createElement("IMG");
                 i.setAttribute("src", item.src);
@@ -60,36 +53,39 @@
                 document.body.appendChild(i);
             });
 
+            // load teddy image
+            var i = document.createElement("IMG");
+            i.setAttribute("src", "assets/fat teddy.png");
+            i.setAttribute("id", "teddy");
+            document.body.appendChild(i);
+
             // health bar
             const BAR_WIDTH = 20;
             const BAR_X = 10;
             const BAR_Y = 110;
             const MAX_ENERGY = -100;
-            const ENERGY_LOSS = 0.5;
+            const ENERGY_LOSS = 5;
+            const chinUpDist = 100;
 
             var alive = true;
 
-            // Minimum time interval until the game registers a button event
             const BUTTON_INTERVAL = 16;
 
             var bg_music = new Audio('Podington_Bear_-_Funk.mp3').play();
 
-            // Generates random number rounded down
             function getRandomInt(max) {
                 return Math.floor(Math.random() * Math.floor(max));
             }
 
-            // Generates food, player, and bar components in the game
             function startGame() {
                 food = new component(30, 30, "red", 0, 0, "food");
-                player = new component(30, 50, "blue", 240, 135, "player");
+                player = new component(30, 50, "blue", 414 / 5, 150, "player");
                 bar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "bar");
                 isChinUp = false;
                 chinInterval = 0;
                 myGameArea.start();
             }
 
-            // Sets canvas variables and settings
             var myGameArea = {
                 canvas : document.createElement("canvas"),
                 start : function() {
@@ -116,9 +112,7 @@
                 }
             }
 
-            // Generates component properties
             function component(width, height, color, x, y, type) {
-                // Three types: food, player, bar
                 this.type = type;
                 this.width = width;
                 this.height = height;
@@ -131,16 +125,15 @@
                     ctx = myGameArea.context;
                     ctx.save();
                     if(type == "food") {
-                        // Sets the energy gain from the energy property in the foodObjects array
                         this.energyGain = foodObjects[this.foodNum].energy;
                         ctx.translate(this.x, this.y);
-                        // Generates the corresponding image based on foodNum
                         var img = document.getElementById(foodObjects[this.foodNum].type);
                         ctx.drawImage(img, 10, 10);
                     } else if (type == "player") {
                         ctx.translate(this.x, this.y);
-                        ctx.fillStyle = color;
-                        ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+                        console.log("player drawn");
+                        var img = document.getElementById("teddy");
+                        ctx.drawImage(img, 0, 0, img.width / 8, img. height / 8);
                     } else if (type == "bar") {
                         ctx.fillStyle = color;
                         ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
@@ -158,40 +151,32 @@
                 myGameArea.clear();
                 player.angle = 0;
                 player.speed = 0;
-                // If the food reaches the end of the canvas, reset the x-axis to 0
                 if (food.x >= 480) {
                     food.foodNum = getRandomInt(4);
                     food.x = 0;
                 }
-                
-                // If the chinInterval is greater than the delay, then process the chin up and down
                 if(chinInterval > BUTTON_INTERVAL && (myGameArea.keys && myGameArea.keys[38])) {
                     if (isChinUp) { // going down
-                        player.y += 50;
+                        player.y += chinUpDist;
                         isChinUp = false;
                     } else { // going up
-                        player.y -= 50;
+                        player.y -= chinUpDist;
                         isChinUp = true;
                         currEnergy += ENERGY_LOSS;
                         var grunt = new Audio('grunt.mp3').play();
                     }
                     chinInterval = 0;
                 }
-                
-                // If the player is alive, the player loses energy
+
                 if (alive) {
-                    currEnergy += ENERGY_LOSS;
+                    currEnergy += constENERGY_LOSS;
                 }
-                
+
                 if (currEnergy > 0) {
                     currEnergy = 0;
                     alive = false;
                 }
-
-                // If the food is within range and the player is chin up
-                // process the energy change
                 if (isChinUp && (food.x > 210 && food.x < 255)) {
-                    // This statement sets a ceiling on the amount of energy gained
                     if (currEnergy - food.energyGain >= MAX_ENERGY) {
                         currEnergy -= food.energyGain;
                     } else {
@@ -201,8 +186,6 @@
                     food.x = 0;
                     console.log("score");
                 }
-                
-                // Updates the position of the objects
                 player.update();
                 food.newPos();
                 food.update();
