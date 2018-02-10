@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <canvas id="myCanvas" width="500" height="500"
+  style="border:1px solid #c3c3c3;">
+  Your browser does not support the canvas element.
+</canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+draw = canvas.getContext('2d');
+
+// every 30 milliseconds we redraw EVERYTHING.
+setInterval(redraw, 30);
+
+var middle = canvas.width / 2;
+var barWidth = 20;
+
+var x = 10;
+var y = 110;
+
+var maxEnergy = -100;
+var currEnergy = -100;
+var constEnergyLoss = 0.2;
+var energyLoss = 5;
+
+var alive = true;
+var start;
+
+draw.fillStyle = "#FF0000";
+draw.fillRect(x, y, barWidth, currEnergy);
+
+document.getElementById('myCanvas').onclick = function() {
+  currEnergy += energyLoss;
+};
+
+//wipes the canvas context
+function clear(c) {
+  c.clearRect(0, 0, 500, 500);
+}
+
+function redraw() {
+  clear(draw);
+  if (alive) {
+    currEnergy += constEnergyLoss;
+  }
+
+  if (currEnergy > 0) {
+    currEnergy = 0;
+    alive = false;
+  }
+
+  draw.strokeRect(x, y, barWidth, maxEnergy)
+  draw.fillRect(x, y, barWidth, currEnergy);
+}
+</script>
+
+</body>
+</html>
