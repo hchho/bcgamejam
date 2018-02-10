@@ -22,23 +22,23 @@
 
             var foodObjects = [
                 {
-                    type: "apple", 
+                    type: "apple",
                     src: "assets/apple.png"
-                }, 
+                },
                 {
-                    type: "carrot", 
+                    type: "carrot",
                     src: "assets/carrot.png"
-                }, 
+                },
                 {
-                    type: "fish", 
+                    type: "fish",
                     src: "assets/fish.png"
-                }, 
+                },
                 {
-                    type: "steak", 
+                    type: "steak",
                     src: "assets/steak.png"
-                } 
+                }
             ]
-            
+
             foodObjects.forEach(function(item) {
                 var i = document.createElement("IMG");
                 i.setAttribute("src", item.src);
@@ -65,7 +65,7 @@
             const BUTTON_INTERVAL = 16;
 
             var bg_music = new Audio('Podington_Bear_-_Funk.mp3').play();
-            
+
             function getRandomInt(max) {
                 return Math.floor(Math.random() * Math.floor(max));
             }
@@ -82,8 +82,8 @@
             var myGameArea = {
                 canvas : document.createElement("canvas"),
                 start : function() {
-                    this.canvas.width = 480;
-                    this.canvas.height = 270;
+                    this.canvas.width = 414;
+                    this.canvas.height = 736;
                     this.context = this.canvas.getContext("2d");
                     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                     this.frameNo = 0;
