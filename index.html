@@ -14,9 +14,15 @@
         <script>
         var food;
         var player;
+        var isChinUp;
+        var chinInterval;
+        const BUTTON_INTERVAL = 18;
         
         function startGame() {
             food = new component(30, 30, "red", 0, 50);
+            player = new component(30, 50, "blue", 240, 135);
+            isChinUp = false;
+            chinInterval = 0;
             myGameArea.start();
         }
         
@@ -29,6 +35,14 @@
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.frameNo = 0;
                 this.interval = setInterval(updateGameArea, 20);
+                window.addEventListener('keydown', function (e) {
+                    e.preventDefault();
+                    myGameArea.keys = (myGameArea.keys || []);
+                    myGameArea.keys[e.keyCode] = (e.type == "keydown");
+                })
+                window.addEventListener('keyup', function (e) {
+                    myGameArea.keys[e.keyCode] = (e.type == "keydown");
+                })
             },
             stop : function() {
                 clearInterval(this.interval);
@@ -63,11 +77,26 @@
         
         function updateGameArea() {
             myGameArea.clear();
+            player.angle = 0;
+            player.speed = 0;
             if (food.x >= 480) {
                 food.x = 0;
             }
+            if(chinInterval > BUTTON_INTERVAL && (myGameArea.keys && myGameArea.keys[38])) {
+                if (isChinUp) {
+                    player.y += 50;
+                    isChinUp = false;
+                } else {
+                    player.y -= 50;
+                    isChinUp = true;
+                }
+                chinInterval = 0;
+            }
+            // player.newPos();
+            player.update();
             food.newPos();
             food.update();
+            chinInterval++;
         }
         
         </script>
