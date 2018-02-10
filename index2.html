@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BC GAME JAM</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+        canvas {
+            border:1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+        </style>
+    </head>
+    <body onload="startGame()">
+        <script>
+        var food;
+        var player;
+        var isChinUp;
+        var chinInterval;
+
+        // health bar
+        var barWidth = 20;
+
+        var barX = 10;
+        var barY = 110;
+
+        var maxEnergy = -100;
+        var currEnergy = -100;
+        var constEnergyLoss = 0.2;
+        var energyLoss = 5;
+
+        var alive = true;
+
+        const BUTTON_INTERVAL = 18;
+
+        function startGame() {
+            food = new component(30, 30, "red", 0, 50);
+            player = new component(30, 50, "blue", 240, 135);
+            bar = new bar(barWidth, currEnergy, "blue", barX, barY);
+            isChinUp = false;
+            chinInterval = 0;
+            myGameArea.start();
+        }
+
+        var myGameArea = {
+            canvas : document.createElement("canvas"),
+            start : function() {
+                this.canvas.width = 480;
+                this.canvas.height = 270;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.frameNo = 0;
+                this.interval = setInterval(updateGameArea, 20);
+                window.addEventListener('keydown', function (e) {
+                    e.preventDefault();
+                    myGameArea.keys = (myGameArea.keys || []);
+                    myGameArea.keys[e.keyCode] = (e.type == "keydown");
+                })
+                window.addEventListener('keyup', function (e) {
+                    myGameArea.keys[e.keyCode] = (e.type == "keydown");
+                })
+            },
+            stop : function() {
+                clearInterval(this.interval);
+            },
+            clear : function() {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+        }
+
+        function component(width, height, color, x, y, type) {
+            this.type = type;
+            this.width = width;
+            this.height = height;
+            this.speed = 5;
+            this.angle = 0;
+            this.x = x;
+            this.y = y;
+            this.update = function() {
+                ctx = myGameArea.context;
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = color;
+                ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+                ctx.restore();
+            }
+            this.newPos = function() {
+                this.y += this.speed * Math.sin(this.angle);
+                this.x += this.speed * Math.cos(this.angle);
+            }
+        }
+
+        function bar(width, height, color, x, y, type) {
+            this.type = type;
+            this.width = width;
+            this.height = height;
+            this.speed = 5;
+            this.angle = 0;
+            this.x = x;
+            this.y = y;
+            this.update = function() {
+                ctx = myGameArea.context;
+                ctx.save();
+                // ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = color;
+                ctx.strokeRect(this.x, this.y, barWidth, maxEnergy);
+                ctx.fillRect(this.x, this.y, barWidth, currEnergy);
+                ctx.restore();
+            }
+            this.newPos = function() {
+                this.y += this.speed * Math.sin(this.angle);
+                this.x += this.speed * Math.cos(this.angle);
+            }
+        }
+
+        function updateGameArea() {
+            myGameArea.clear();
+            player.angle = 0;
+            player.speed = 0;
+            if (food.x >= 480) {
+                food.x = 0;
+            }
+            if(chinInterval > BUTTON_INTERVAL && (myGameArea.keys && myGameArea.keys[38])) {
+                if (isChinUp) { // going down
+                    player.y += 50;
+                    isChinUp = false;
+                } else { // going up
+                    player.y -= 50;
+                    isChinUp = true;
+                    currEnergy += energyLoss;
+                }
+                chinInterval = 0;
+            }
+
+            if (alive) {
+              currEnergy += constEnergyLoss;
+            }
+
+            if (currEnergy > 0) {
+              currEnergy = 0;
+              alive = false;
+            }
+
+            // ctx.strokeRect(barX, barY, barWidth, maxEnergy);
+            // ctx.fillRect(barX, barY, barWidth, currEnergy);
+
+            // player.newPos();
+            player.update();
+            food.newPos();
+            food.update();
+            bar.update();
+            chinInterval++;
+        }
+
+        </script>
+    </body>
+</html>
