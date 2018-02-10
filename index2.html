@@ -92,6 +92,11 @@
                 }
                 chinInterval = 0;
             }
+            if (isChinUp && (food.x > 210 && food.x < 255)) {
+                food.x = 0;
+                console.log("score");
+            }
+            // console.log(food.x);
             // player.newPos();
             player.update();
             food.newPos();
