@@ -23,19 +23,23 @@
             var foodObjects = [
                 {
                     type: "apple", 
-                    src: "assets/apple.png"
+                    src: "assets/apple.png",
+                    energy: 15
                 }, 
                 {
                     type: "carrot", 
-                    src: "assets/carrot.png"
+                    src: "assets/carrot.png",
+                    energy: 10
                 }, 
                 {
                     type: "fish", 
-                    src: "assets/fish.png"
+                    src: "assets/fish.png",
+                    energy: 20
                 }, 
                 {
                     type: "steak", 
-                    src: "assets/steak.png"
+                    src: "assets/steak.png",
+                    energy: 25
                 } 
             ]
 
@@ -52,11 +56,10 @@
             var barX = 10;
             var barY = 110;
 
-            var maxEnergy = -100;
+            const MAX_ENERGY = -100;
             var currEnergy = -100;
             var constEnergyLoss = 0.2;
             const energyLoss = 5;
-            const energyGain = 10;
 
             var alive = true;
 
@@ -116,6 +119,7 @@
                     ctx = myGameArea.context;
                     ctx.save();
                     if(type == "food") {
+                        this.energyGain = foodObjects[this.foodNum].energy;
                         ctx.translate(this.x, this.y);
                         var img = document.getElementById(foodObjects[this.foodNum].type);
                         ctx.drawImage(img, 10, 10);
@@ -125,7 +129,7 @@
                         ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
                     } else if (type == "bar") {
                         ctx.fillStyle = color;
-                        ctx.strokeRect(this.x, this.y, barWidth, maxEnergy);
+                        ctx.strokeRect(this.x, this.y, barWidth, MAX_ENERGY);
                         ctx.fillRect(this.x, this.y, barWidth, currEnergy);
                     }
                     ctx.restore();
@@ -166,8 +170,13 @@
                     alive = false;
                 }
                 if (isChinUp && (food.x > 210 && food.x < 255)) {
+                    if (currEnergy - food.energyGain >= MAX_ENERGY) {
+                        currEnergy -= food.energyGain;
+                    } else {
+                        currEnergy = MAX_ENERGY;
+                    }
+                    food.foodNum = getRandomInt(4);
                     food.x = 0;
-                    currEnergy -= energyGain;
                     console.log("score");
                 }
                 player.update();
