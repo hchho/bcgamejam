@@ -38,15 +38,13 @@
                     src: "assets/steak.png"
                 } 
             ]
-            
+
             foodObjects.forEach(function(item) {
                 var i = document.createElement("IMG");
                 i.setAttribute("src", item.src);
                 i.setAttribute("id", item.type);
                 document.body.appendChild(i);
             });
-
-            var img = document.getElementById(foodObjects[getRandomInt(4)].type);
 
             // health bar
             var barWidth = 20;
@@ -65,15 +63,15 @@
             const BUTTON_INTERVAL = 16;
 
             var bg_music = new Audio('Podington_Bear_-_Funk.mp3').play();
-            
+
             function getRandomInt(max) {
                 return Math.floor(Math.random() * Math.floor(max));
             }
 
             function startGame() {
-                food = new component(30, 30, "red", 0, 50, "food");
+                food = new component(30, 30, "red", 0, 0, "food");
                 player = new component(30, 50, "blue", 240, 135, "player");
-                bar = new bar(barWidth, currEnergy, "blue", barX, barY);
+                bar = new component(barWidth, currEnergy, "blue", barX, barY, "bar");
                 isChinUp = false;
                 chinInterval = 0;
                 myGameArea.start();
@@ -107,48 +105,29 @@
 
             function component(width, height, color, x, y, type) {
                 this.type = type;
-
                 this.width = width;
                 this.height = height;
                 this.speed = 5;
                 this.angle = 0;
                 this.x = x;
                 this.y = y;
+                this.foodNum = getRandomInt(4);
                 this.update = function() {
                     ctx = myGameArea.context;
                     ctx.save();
-                    ctx.translate(this.x, this.y);
                     if(type == "food") {
+                        ctx.translate(this.x, this.y);
+                        var img = document.getElementById(foodObjects[this.foodNum].type);
                         ctx.drawImage(img, 10, 10);
-                    } else {
-                        ctx.rotate(this.angle);
+                    } else if (type == "player") {
+                        ctx.translate(this.x, this.y);
                         ctx.fillStyle = color;
                         ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+                    } else if (type == "bar") {
+                        ctx.fillStyle = color;
+                        ctx.strokeRect(this.x, this.y, barWidth, maxEnergy);
+                        ctx.fillRect(this.x, this.y, barWidth, currEnergy);
                     }
-                    ctx.restore();
-                }
-                this.newPos = function() {
-                    this.y += this.speed * Math.sin(this.angle);
-                    this.x += this.speed * Math.cos(this.angle);
-                }
-            }
-
-            function bar(width, height, color, x, y, type) {
-                this.type = type;
-                this.width = width;
-                this.height = height;
-                this.speed = 5;
-                this.angle = 0;
-                this.x = x;
-                this.y = y;
-                this.update = function() {
-                    ctx = myGameArea.context;
-                    ctx.save();
-                    // ctx.translate(this.x, this.y);
-                    ctx.rotate(this.angle);
-                    ctx.fillStyle = color;
-                    ctx.strokeRect(this.x, this.y, barWidth, maxEnergy);
-                    ctx.fillRect(this.x, this.y, barWidth, currEnergy);
                     ctx.restore();
                 }
                 this.newPos = function() {
@@ -162,6 +141,7 @@
                 player.angle = 0;
                 player.speed = 0;
                 if (food.x >= 480) {
+                    food.foodNum = getRandomInt(4);
                     food.x = 0;
                 }
                 if(chinInterval > BUTTON_INTERVAL && (myGameArea.keys && myGameArea.keys[38])) {
