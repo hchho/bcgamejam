@@ -141,7 +141,10 @@
               currEnergy = 0;
               alive = false;
             }
-
+            if (isChinUp && (food.x > 210 && food.x < 255)) {
+                food.x = 0;
+                console.log("score");
+            }
             // ctx.strokeRect(barX, barY, barWidth, maxEnergy);
             // ctx.fillRect(barX, barY, barWidth, currEnergy);
 
