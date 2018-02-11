@@ -1,25 +1,22 @@
-
-// $(document).ready(function () {
+// Updating .overlay on button clicks
 $(".end").hide();
 $(".start").click(function() {
     $(".menu").hide();
-    // $(".background").hide();
     state = PLAY;
     startGame();
 });
 
 $(".play-again").click(function() {
     $(".menu").hide();
-    // $(".background").hide();
     $(".end").hide();
     state = PLAY;
-    // startGame();
 });
+
+// storing canvas height and width
 canHeight = window.innerHeight;
 canWidth = canHeight * (9/16);
 $('.overlay').width(canWidth);
 $('.overlay').height(canHeight);
-// }
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -53,7 +50,6 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
-        // this.context.drawImage(bg, 0, 0, canWidth, canHeight);
         window.addEventListener('keydown', function (e) {
             e.preventDefault();
             myGameArea.keys = (myGameArea.keys || []);

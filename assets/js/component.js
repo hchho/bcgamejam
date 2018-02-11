@@ -11,7 +11,9 @@ function component(width, height, color, x, y, type) {
                 //update every 20 milliseconds
                 this.update = function() {
                     ctx = myGameArea.context;
+
                     ctx.save();
+
                     if(type == "food") {
                           this.energyGain = objects[this.foodNum].energy;
                           ctx.translate(this.x, this.y);
@@ -19,14 +21,14 @@ function component(width, height, color, x, y, type) {
                           ctx.drawImage(img, 10, 10);
                       } else if (type == "player") {
                           ctx.translate(this.x, this.y);
-                          // var teddyImg = document.getElementById("teddy");
+                          ctx.drawImage(bg, 0, 0, canWidth, canHeight);
                           ctx.drawImage(tedImg, 0, 0, canWidth, canHeight);
-                          // ctx.drawImage(tedImg, -60, -246, tedImg.width/2, tedImg.height/2);
                       } else if (type == "healthBar") {
                           ctx.fillStyle = color;
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
                           ctx.fillRect(this.x, this.y, BAR_WIDTH, currEnergy);
-                      } 
+
+                      }
 
 
                     ctx.restore();
