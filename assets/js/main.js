@@ -51,6 +51,7 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
+        bg_music.play();
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function (e) {
             e.preventDefault();

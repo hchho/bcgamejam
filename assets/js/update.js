@@ -44,7 +44,7 @@ function updateGameArea() {
                     
                 
                 currEnergy += ENERGY_LOSS;
-                var grunt = new Audio('assets/sounds/grunt.mp3').play();
+                grunt.play();
             }
             chinInterval = 0;
         }
@@ -80,10 +80,10 @@ function updateGameArea() {
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {
-                    var eat = new Audio('assets/sounds/eat_good.wav').play();
+                    eat_good.play();
                     tedImg = document.getElementById("Good_4");
                 } else {
-                    eat = new Audio('assets/sounds/eat_bad.wav').play();
+                    eat_bad.play();
                     tedImg = document.getElementById("Bad_4");
                 }
             } else {
