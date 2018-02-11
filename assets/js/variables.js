@@ -3,8 +3,7 @@ var player;
 var isChinUp;
 var chinInterval;
 var currEnergy = -200;
-// var constEnergyLoss = 0.05;
-var constEnergyLoss = 2;
+var constEnergyLoss = 0.05;
 var counter = 0;
 var highScore = 0;
 var level = 1;
@@ -43,11 +42,14 @@ var eat_good = new Audio('assets/sounds/eat_good.wav');
 
 var eat_bad = new Audio('assets/sounds/eat_bad.wav');
 
+var just_do_it = new Audio('assets/sounds/just_do_it.mp3');
+
 var button_click = new Audio('assets/sounds/button_clicked.wav');
 
-bg_music.addEventListener('ended', function() {
-    this.currentTime = 0;
-    this.play();
-}, false);
+// bg_music.addEventListener('ended', function() {
+//     this.currentTime = 0;
+//     this.play();
+// }, false);
 
-        bg_music.play();
+bg_music.loop = true;
+bg_music.play();
