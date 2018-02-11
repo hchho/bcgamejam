@@ -3,7 +3,8 @@ var player;
 var isChinUp;
 var chinInterval;
 var currEnergy = -200;
-var constEnergyLoss = 0.05;
+// var constEnergyLoss = 0.05;
+var constEnergyLoss = 2;
 var counter = 0;
 var highScore = 0;
 var level = 1;
@@ -41,6 +42,8 @@ var grunt = new Audio('assets/sounds/grunt.mp3');
 var eat_good = new Audio('assets/sounds/eat_good.wav');
 
 var eat_bad = new Audio('assets/sounds/eat_bad.wav');
+
+var button_click = new Audio('assets/sounds/button_clicked.wav');
 
 bg_music.addEventListener('ended', function() {
     this.currentTime = 0;

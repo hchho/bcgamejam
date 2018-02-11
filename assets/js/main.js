@@ -1,3 +1,8 @@
+$(".buttons").click(function() {
+    button_click.play();
+    console.log("clicked");
+});
+
 // Updating .overlay on button clicks
 $(".end").hide();
 $(".start").click(function() {
@@ -12,11 +17,26 @@ $(".play-again").click(function() {
     state = PLAY;
 });
 
-// storing canvas height and width
+$(".home").click(function() {
+    $(".menu").show();
+    $(".end").hide();
+    state = MAIN_MENU;
+});
+
 canHeight = window.innerHeight;
 canWidth = canHeight * (9/16);
 $('.overlay').width(canWidth);
 $('.overlay').height(canHeight);
+
+$(window).resize(function() {
+    console.log("resize");
+    // storing canvas height and width
+    canHeight = window.innerHeight;
+    canWidth = canHeight * (9/16);
+    $('.overlay').width(canWidth);
+    $('.overlay').height(canHeight);
+});
+
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
