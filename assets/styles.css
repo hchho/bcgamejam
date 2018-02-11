@@ -4,7 +4,9 @@ body {
 }
 canvas {
     position: absolute;
-    top:0; left:0;
+    top:0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 0;
 }
 img {
@@ -13,14 +15,12 @@ img {
 .overlay, .background {
     display: block;
     position: absolute;
-    bottom:0; left:0;
+    bottom:0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1;
     width: 100%;
 }
-/* .menu {
-    width: 100%;
-    height: 100%;
-} */
 .buttons {
     position: relative;
     z-index: 2;
