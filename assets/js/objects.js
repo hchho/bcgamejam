@@ -67,7 +67,7 @@ var objects = [
     },
     {
         type: "bg",
-        src: "./assets/Background/gif/StartScreenBg.gif"
+        src: "./assets/Background/ingame_bg.png"
     },
 ]
 

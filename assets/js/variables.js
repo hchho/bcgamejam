@@ -32,7 +32,9 @@ const BUTTON_INTERVAL = 16;
 
 const FOOD_ITEMS = 9;
 
-var bg_music = new Audio('Podington_Bear_-_Funk.mp3');
+const HIT_RANGE = 60;
+
+var bg_music = new Audio('assets/sounds/Podington_Bear_-_Funk.mp3');
 
 bg_music.addEventListener('ended', function() {
     this.currentTime = 0;

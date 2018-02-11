@@ -11,17 +11,18 @@ function component(width, height, color, x, y, type) {
                 //update every 20 milliseconds
                 this.update = function() {
                     ctx = myGameArea.context;
+
                     ctx.save();
-                      if(type == "food") {
+
+                    if(type == "food") {
                           this.energyGain = objects[this.foodNum].energy;
                           ctx.translate(this.x, this.y);
                           var img = document.getElementById(objects[this.foodNum].type);
                           ctx.drawImage(img, 10, 10);
                       } else if (type == "player") {
                           ctx.translate(this.x, this.y);
-                          // var teddyImg = document.getElementById("teddy");
-                          ctx.drawImage(tedImg, 0, -1, tedImg.width/4, tedImg.height/4);
-                          // ctx.drawImage(tedImg, -60, -246, tedImg.width/2, tedImg.height/2);
+                          ctx.drawImage(bg, 0, 0, canWidth, canHeight);
+                          ctx.drawImage(tedImg, 0, 0, canWidth, canHeight);
                       } else if (type == "healthBar") {
                           ctx.fillStyle = color;
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);

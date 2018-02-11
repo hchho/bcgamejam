@@ -1,25 +1,22 @@
-
-// $(document).ready(function () {
-$(".replay").hide();
+// Updating .overlay on button clicks
+$(".end").hide();
 $(".start").click(function() {
     $(".menu").hide();
-    $(".background").hide();
     state = PLAY;
     startGame();
 });
 
-$(".replay").click(function() {
+$(".play-again").click(function() {
     $(".menu").hide();
-    $(".background").hide();
-    $(".replay").hide();
+    $(".end").hide();
     state = PLAY;
-    // startGame();
 });
+
+// storing canvas height and width
 canHeight = window.innerHeight;
 canWidth = canHeight * (9/16);
 $('.overlay').width(canWidth);
 $('.overlay').height(canHeight);
-// }
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -33,6 +30,7 @@ function startGame() {
     food = new component(30, 30, "red", 0, 0, "food");
     player = new component(0, 0, "blue", 0, 0, "player");
     healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
+    // bg = new component(0, 0, "blue", canWidth, canHeight, "bg");
     // strength = new component(BAR_WIDTH, currStrength, "red", 40, BAR_Y, "strength");
     pointCounter = new component(0,0, "blue", 150, 550, "pointCounter");
     highScoreBoard = new component(0,0,"blue", 150, 650, "highScoreBoard");
@@ -62,6 +60,7 @@ var myGameArea = {
         window.addEventListener('keyup', function (e) {
             myGameArea.keys[e.keyCode] = (e.type == "keydown");
         })
+
 
     },
     stop : function() {
