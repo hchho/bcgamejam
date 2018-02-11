@@ -34,14 +34,12 @@ function updateGameArea() {
 
             if (isChinUp) { // going down
                 // player.y += chinUpDist;
-                document.getElementById("ted").src= "assets/Teddy/Ted_0.png"; // change ted image
-
+                tedImg = document.getElementById("ted_down");
                 isChinUp = false;
 
             } else { // going up
                 // player.y -= chinUpDist;
-                document.getElementById("ted").src= "assets/Teddy/Ted_1.png";
-
+                tedImg = document.getElementById("ted_up");
                 isChinUp = true;
                 currEnergy += ENERGY_LOSS;
                 var grunt = new Audio('grunt.mp3').play();
@@ -72,13 +70,17 @@ function updateGameArea() {
         }
 
         if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )){
-
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
+                if (food.energyGain > 0) {
+                    document.getElementById("ted").src= "assets/Teddy/EatGood_4.png";
+                } else {
+                    document.getElementById("ted").src= "assets/Teddy/EatBad_4.png";
+                }
             } else {
                 currEnergy = MAX_ENERGY;
             }
-            food.foodNum = getRandomInt(4);
+            food.foodNum = getRandomInt(FOOD_ITEMS);
             food.x = 0;
             console.log("score");
         }

@@ -50,8 +50,12 @@ var objects = [
         energy: -15
     },
     {
-        type: "ted",
+        type: "ted_down",
         src: "./assets/Teddy/Ted_0.png"
+    },
+    {
+        type: "ted_up",
+        src: "./assets/Teddy/Ted_1.png"
     },
     {
         type: "bg",
@@ -67,7 +71,7 @@ objects.forEach(function(item) {
 });
 
 // load teddy image
-var tedImg = document.getElementById("ted");
+var tedImg = document.getElementById("ted_down");
 
 
 // load background image
