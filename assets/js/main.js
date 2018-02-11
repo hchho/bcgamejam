@@ -1,3 +1,8 @@
+$(".buttons").click(function() {
+    button_click.play();
+    console.log("clicked");
+});
+
 // Updating .overlay on button clicks
 $(".end").hide();
 $(".start").click(function() {
@@ -10,6 +15,12 @@ $(".play-again").click(function() {
     $(".menu").hide();
     $(".end").hide();
     state = PLAY;
+});
+
+$(".home").click(function() {
+    $(".menu").show();
+    $(".end").hide();
+    state = MAIN_MENU;
 });
 
 // storing canvas height and width
