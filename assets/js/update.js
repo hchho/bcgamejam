@@ -101,7 +101,6 @@ function updateGameArea() {
             }
             food.foodNum = getRandomInt(FOOD_ITEMS);
             food.x = 0;
-            console.log("score");
         }
 
         if (currEnergy > MAX_ENERGY / 2) {
