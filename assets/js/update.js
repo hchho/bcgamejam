@@ -4,7 +4,9 @@ function updateGameArea() {
     }
 
     if (!alive) {
-
+        constEnergyLoss = 0.05;
+        leveler = 5;
+        level = 1;
         state = END;
         isChinUp = false;
         tedImg = document.getElementById("ted_down");
@@ -64,7 +66,7 @@ function updateGameArea() {
             }
             counter = 0;
             alive = false;
-            myGameArea.stop();
+//            myGameArea.stop();
         }
 
         if (state == END) {
@@ -76,7 +78,7 @@ function updateGameArea() {
 
 
         // if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )){
-        if (isChinUp && (food.y < 18 && food.y > 13 && food.x > canWidth/2 - HIT_RANGE && food.x < canWidth/2 + HIT_RANGE )){
+        if (isChinUp && (food.x > canWidth/2 - HIT_RANGE && food.x < canWidth/2 + HIT_RANGE )){
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {

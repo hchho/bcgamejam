@@ -47,3 +47,4 @@ bg_music.addEventListener('ended', function() {
     this.play();
 }, false);
 
+        bg_music.play();

@@ -27,7 +27,7 @@ function getRandomRange(min, max) {
 }
 
 function startGame() {
-    food = new component(30, 30, "red", 0, 0, "food");
+    food = new component(30, 30, "red", 0, 100, "food");
     player = new component(0, 0, "blue", 0, 0, "player");
     healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
     // bg = new component(0, 0, "blue", canWidth, canHeight, "bg");
@@ -51,7 +51,6 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
-        bg_music.play();
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function (e) {
             e.preventDefault();
