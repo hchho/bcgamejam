@@ -268,6 +268,7 @@
                 if (currEnergy > 0) {
                     currEnergy = 0;
                     alive = false;
+                    myGameArea.stop();
                 }
 
                 if (isChinUp && (food.x > 210 && food.x < 255)) {
