@@ -24,6 +24,11 @@ function component(width, height, color, x, y, type) {
                           ctx.drawImage(bg, 0, 0, canWidth, canHeight);
                           ctx.drawImage(tedImg, 0, 0, canWidth, canHeight);
                       } else if (type == "healthBar") {
+                          if (currEnergy > MAX_ENERGY / 2) {
+                              color = "red";
+                          } else {
+                              color = "blue";
+                          }
                           ctx.fillStyle = color;
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
                           ctx.fillRect(this.x, this.y, BAR_WIDTH, currEnergy);
