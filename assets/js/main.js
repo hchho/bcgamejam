@@ -23,11 +23,15 @@ $(".home").click(function() {
     state = MAIN_MENU;
 });
 
-// storing canvas height and width
-canHeight = window.innerHeight;
-canWidth = canHeight * (9/16);
-$('.overlay').width(canWidth);
-$('.overlay').height(canHeight);
+$(window).resize(function() {
+    console.log("resize");
+    // storing canvas height and width
+    canHeight = window.innerHeight;
+    canWidth = canHeight * (9/16);
+    $('.overlay').width(canWidth);
+    $('.overlay').height(canHeight);
+});
+
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
