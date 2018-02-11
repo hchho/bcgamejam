@@ -31,7 +31,7 @@ function updateGameArea() {
                 tedImg = document.getElementById("ted_up");
                 isChinUp = true;
                 currEnergy += ENERGY_LOSS;
-                var grunt = new Audio('grunt.mp3').play();
+                var grunt = new Audio('assets/sounds/grunt.mp3').play();
             }
             chinInterval = 0;
 
@@ -50,12 +50,15 @@ function updateGameArea() {
             alive = false;
         }
 
-        if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )){
+        // if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )){
+        if (isChinUp && (food.y < 18 && food.y > 13 && food.x > canWidth/2 - HIT_RANGE && food.x < canWidth/2 + HIT_RANGE )){
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {
+                    var eat = new Audio('assets/sounds/eat_good.wav').play();
                     tedImg = document.getElementById("Good_4");
                 } else {
+                    eat = new Audio('assets/sounds/eat_bad.wav').play();
                     tedImg = document.getElementById("Bad_4");
                 }
             } else {
