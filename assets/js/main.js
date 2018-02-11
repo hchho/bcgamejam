@@ -31,7 +31,10 @@ $('.overlay').height(canHeight);
 $(window).resize(function() {
     console.log("resize");
     // storing canvas height and width
-
+    canHeight = window.innerHeight;
+    canWidth = canHeight * (9/16);
+    $('.overlay').width(canWidth);
+    $('.overlay').height(canHeight);
 });
 
 
