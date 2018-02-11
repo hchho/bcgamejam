@@ -22,7 +22,7 @@ function getRandomRange(min, max) {
 
 function startGame() {
     food = new component(30, 30, "red", 0, 0, "food");
-    player = new component(0, 0, "blue", 414/7, 245, "player");
+    player = new component(0, 0, "blue", 0, 0, "player");
     healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
     // strength = new component(BAR_WIDTH, currStrength, "red", 40, BAR_Y, "strength");
     pointCounter = new component(0,0, "blue", 150, 400, "pointCounter");

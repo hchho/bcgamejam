@@ -20,12 +20,13 @@ function component(width, height, color, x, y, type) {
                       } else if (type == "player") {
                           ctx.translate(this.x, this.y);
                           // var teddyImg = document.getElementById("teddy");
-                          ctx.drawImage(tedImg, 0, 0, tedImg.width/9, tedImg.height/9);
+                          ctx.drawImage(tedImg, 0, -1, tedImg.width/4, tedImg.height/4);
+                          // ctx.drawImage(tedImg, -60, -246, tedImg.width/2, tedImg.height/2);
                       } else if (type == "healthBar") {
                           ctx.fillStyle = color;
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
                           ctx.fillRect(this.x, this.y, BAR_WIDTH, currEnergy);
-                      } 
+                      }
 
 
                     ctx.restore();
