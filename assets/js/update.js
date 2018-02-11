@@ -1,25 +1,14 @@
 function updateGameArea() {
-    
-    // console.log(state);
-    // console.log(isChinUp);
-    // console.log(currEnergy);
     if (state == END) {
-        // console.log("hel");
-        $(".menu").show();
-        // $(".menuImg").hide();
-        $(".start").hide();
-        $(".replay").show();
-        // $('body > :not(.replay)').hide();
+        $(".end").show();
     }
 
     if (!alive) {
-        console.log("dead");
         state = END;
         isChinUp = false;
         tedImg = document.getElementById("ted_down");
         currEnergy = MAX_ENERGY;
         alive = true;
-        // state = MAIN_MENU;
     }
 
     if (state == PLAY) {
@@ -35,12 +24,10 @@ function updateGameArea() {
 
 
             if (isChinUp) { // going down
-                // player.y += chinUpDist;
                 tedImg = document.getElementById("ted_down");
                 isChinUp = false;
 
             } else { // going up
-                // player.y -= chinUpDist;
                 tedImg = document.getElementById("ted_up");
                 isChinUp = true;
                 currEnergy += ENERGY_LOSS;
@@ -61,14 +48,6 @@ function updateGameArea() {
         if (currEnergy > 0) {
             currEnergy = 0;
             alive = false;
-            // myGameArea.stop();
-        }
-
-        if (state == END) {
-            console.log("END");
-            $(".menu").show();
-            $('.replay').show();
-            // myGameArea.stop();
         }
 
         // if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )){
