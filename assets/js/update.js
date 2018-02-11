@@ -1,5 +1,6 @@
 function updateGameArea() {
-    console.log(state);
+    
+    // console.log(state);
     // console.log(isChinUp);
     // console.log(currEnergy);
     if (state == END) {
@@ -12,9 +13,12 @@ function updateGameArea() {
     }
 
     if (!alive) {
+        highScore = counter;
+        counter = 0;
         console.log("dead");
         state = END;
         isChinUp = false;
+        tedImg = document.getElementById("ted_down");
         currEnergy = MAX_ENERGY;
         alive = true;
         state = MAIN_MENU;
@@ -59,6 +63,7 @@ function updateGameArea() {
 
         if (currEnergy > 0) {
             currEnergy = 0;
+            highScore = counter;
             alive = false;
          myGameArea.stop();
         }
@@ -74,9 +79,9 @@ function updateGameArea() {
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {
-                    document.getElementById("ted").src= "assets/Teddy/EatGood_4.png";
+                    tedImg = document.getElementById("Good_4");
                 } else {
-                    document.getElementById("ted").src= "assets/Teddy/EatBad_4.png";
+                    tedImg = document.getElementById("Bad_4");
                 }
             } else {
                 currEnergy = MAX_ENERGY;
@@ -89,7 +94,8 @@ function updateGameArea() {
         food.newPos();
         food.update();
         healthBar.update();
-        pointCounter.update()
+        pointCounter.update();
+        highScoreBoard.update();
         chinInterval++;
     }
 }

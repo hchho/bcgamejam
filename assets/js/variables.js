@@ -5,7 +5,10 @@ var chinInterval;
 var currEnergy = -100;
 var constEnergyLoss = 0.2;
 var counter = 0;
+var highScore = 0;
 
+var canWidth;
+var canHeight;
 
 // health bar
 const BAR_WIDTH = 20;
@@ -27,4 +30,11 @@ const BUTTON_INTERVAL = 16;
 
 const FOOD_ITEMS = 9;
 
-var bg_music = new Audio('Podington_Bear_-_Funk.mp3').play();
+var bg_music = new Audio('Podington_Bear_-_Funk.mp3');
+
+bg_music.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
+bg_music.play();

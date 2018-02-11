@@ -29,6 +29,9 @@ function component(width, height, color, x, y, type) {
                       } else if (type == "pointCounter") {
                           ctx.font ="40px Arial";
                           ctx.fillText("Points: " + counter, x, y);
+                      } else if (type == "highScoreBoard") {
+                          ctx.font ="40px Arial";
+                          ctx.fillText("High Score: " + highScore, x, y);
                       }
 
 
