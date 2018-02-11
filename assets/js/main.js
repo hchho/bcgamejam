@@ -1,38 +1,38 @@
-$(".buttons").click(function() {
+$(".buttons").click(function () {
     button_click.play();
     console.log("clicked");
 });
 
 // Updating .overlay on button clicks
 $(".end").hide();
-$(".start").click(function() {
+$(".start").click(function () {
     $(".menu").hide();
     state = PLAY;
     startGame();
 });
 
-$(".play-again").click(function() {
+$(".play-again").click(function () {
     $(".menu").hide();
     $(".end").hide();
     state = PLAY;
 });
 
-$(".home").click(function() {
+$(".home").click(function () {
     $(".menu").show();
     $(".end").hide();
     state = MAIN_MENU;
 });
 
 canHeight = window.innerHeight;
-canWidth = canHeight * (9/16);
+canWidth = canHeight * (9 / 16);
 $('.overlay').width(canWidth);
 $('.overlay').height(canHeight);
 
-$(window).resize(function() {
+$(window).resize(function () {
     console.log("resize");
     // storing canvas height and width
     canHeight = window.innerHeight;
-    canWidth = canHeight * (9/16);
+    canWidth = canHeight * (9 / 16);
     $('.overlay').width(canWidth);
     $('.overlay').height(canHeight);
 });
@@ -52,9 +52,9 @@ function startGame() {
     healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
     // bg = new component(0, 0, "blue", canWidth, canHeight, "bg");
     // strength = new component(BAR_WIDTH, currStrength, "red", 40, BAR_Y, "strength");
-    pointCounter = new component(0,0, "blue", 35, 38, "pointCounter");
-    highScoreBoard = new component(0,0,"blue", 35, 82, "highScoreBoard");
-    difficultyLevel = new component(0,0,"blue", 35, 58, "level");
+    pointCounter = new component(0, 0, "blue", 35, 38, "pointCounter");
+    highScoreBoard = new component(0, 0, "blue", 35, 82, "highScoreBoard");
+    difficultyLevel = new component(0, 0, "blue", 35, 58, "level");
     isChinUp = false;
     chinInterval = 0;
 
@@ -62,12 +62,13 @@ function startGame() {
 }
 
 var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
+    canvas: document.createElement("canvas"),
+    start: function () {
         // this.canvas.width = 414;
         // this.canvas.height = 736;
+        this.canvas.setAttribute("id", "game");
         this.canvas.height = window.innerHeight;
-        this.canvas.width = this.canvas.height * (9/16);
+        this.canvas.width = this.canvas.height * (9 / 16);
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -79,14 +80,27 @@ var myGameArea = {
         })
         window.addEventListener('keyup', function (e) {
             myGameArea.keys[e.keyCode] = (e.type == "keydown");
-        })
-
-
+        });
+        // Set up touch events for mobile, etc
+        window.addEventListener("touchstart", function (e) {
+            // mousePos = getTouchPos(this.canvas, e);
+            myGameArea.touch = e.touches[0];
+            var mouseEvent = new MouseEvent("mousedown", {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            window.dispatchEvent(mouseEvent);
+        }, false);
+        window.addEventListener("touchend", function (e) {
+            myGameArea.touch = e.touches[1];
+            var mouseEvent = new MouseEvent("mouseup", {});
+            window.dispatchEvent(mouseEvent);
+        }, false);
     },
-    stop : function() {
+    stop: function () {
         clearInterval(this.interval);
     },
-    clear : function() {
+    clear: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }

@@ -25,7 +25,7 @@ function updateGameArea() {
         }
 
         if(chinInterval > BUTTON_INTERVAL 
-            && (myGameArea.keys && myGameArea.keys[38])) {
+            && ((myGameArea.keys && myGameArea.keys[38]) || myGameArea.touch)) {
             if (isChinUp) { // going down
                 tedImg = document.getElementById("ted_down");
                 isChinUp = false;
