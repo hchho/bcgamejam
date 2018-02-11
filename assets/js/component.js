@@ -26,6 +26,9 @@ function component(width, height, color, x, y, type) {
                           ctx.fillStyle = color;
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
                           ctx.fillRect(this.x, this.y, BAR_WIDTH, currEnergy);
+                      } else if (type == "pointCounter") {
+                          ctx.font ="40px Arial";
+                          ctx.fillText("Points: " + counter, x, y);
                       }
 
 

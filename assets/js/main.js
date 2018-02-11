@@ -25,7 +25,7 @@ function startGame() {
     player = new component(0, 0, "blue", 0, 0, "player");
     healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
     // strength = new component(BAR_WIDTH, currStrength, "red", 40, BAR_Y, "strength");
-    pointCounter = new component(0,0, "blue", 150, 400, "pointCounter");
+    pointCounter = new component(0,0, "blue", 150, 650, "pointCounter");
     isChinUp = false;
     chinInterval = 0;
 

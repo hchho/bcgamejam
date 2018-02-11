@@ -17,7 +17,7 @@ function updateGameArea() {
         isChinUp = false;
         currEnergy = MAX_ENERGY;
         alive = true;
-        // state = MAIN_MENU;
+        state = MAIN_MENU;
     }
 
     if (state == PLAY) {
@@ -41,6 +41,7 @@ function updateGameArea() {
                 // player.y -= chinUpDist;
                 tedImg = document.getElementById("ted_up");
                 isChinUp = true;
+                counter++;
                 currEnergy += ENERGY_LOSS;
                 var grunt = new Audio('grunt.mp3').play();
             }
@@ -59,7 +60,7 @@ function updateGameArea() {
         if (currEnergy > 0) {
             currEnergy = 0;
             alive = false;
-            // myGameArea.stop();
+         myGameArea.stop();
         }
 
         if (state == END) {
@@ -69,7 +70,7 @@ function updateGameArea() {
             // myGameArea.stop();
         }
 
-        if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )){
+        if (isChinUp && (food.x > 210 && food.x < 255 )){
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {
@@ -88,6 +89,7 @@ function updateGameArea() {
         food.newPos();
         food.update();
         healthBar.update();
+        pointCounter.update()
         chinInterval++;
     }
 }

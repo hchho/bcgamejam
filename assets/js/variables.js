@@ -4,6 +4,7 @@ var isChinUp;
 var chinInterval;
 var currEnergy = -100;
 var constEnergyLoss = 0.2;
+var counter = 0;
 
 
 // health bar
