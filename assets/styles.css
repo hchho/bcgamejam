@@ -13,7 +13,7 @@ img {
 
     display: none;
 }
-.overlay, .background, .high-score {
+.overlay, .background {
     display: block;
     position: absolute;
     bottom: 0;
@@ -37,8 +37,22 @@ img {
     margin-bottom: 2%;
 }
 .high-score {
-    top: 20%;
+    position: absolute;
+    z-index: 1;
+    top: 10%;
     left: 50%;
+    /* width: 100%; */
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+}
+.score {
+    position: absolute;
+    z-index: 1;
+    top: 12%;
+    left: 50%;
+    /* width: 100%; */
+    transform: translateX(-50%);
+    font-size: 3rem;
 }
 .start, .home {
     background-color: #eeeb69;

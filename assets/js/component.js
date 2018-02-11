@@ -50,7 +50,7 @@ function component(width, height, color, x, y, type) {
                     var rand = Math.random(0, 1) * 50;
                   if (state == PLAY) {
                     bouncer++;
-                    this.y += this.speed * Math.sin(bouncer / 6) * 5;
+                    this.y += this.speed * Math.sin(bouncer / 4) * 4;
                     this.x += this.speed * Math.cos(this.angle);
                   }
 

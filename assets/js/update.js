@@ -3,6 +3,8 @@ function updateGameArea() {
     console.log("level: " + level);
     if (state == END) {
         $(".end").show();
+        $('.high-score').text("HIGH SCORE");
+        $('.score').text(highScore);
     }
 
     if (!alive) {
