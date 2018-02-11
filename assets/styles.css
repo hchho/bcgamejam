@@ -10,7 +10,7 @@ canvas {
     z-index: 0;
 }
 img {
-    display: none;
+    /* display: none;    */
 }
 .menu {
     position: absolute;

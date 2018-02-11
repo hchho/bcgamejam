@@ -73,6 +73,18 @@ objects.forEach(function(item) {
 // load teddy image
 var tedImg = document.getElementById("ted_down");
 
+var loadEatingTed = function(status) {
+    let path = "./assets/Teddy/Eating";
+    for (i = 1; i < 5; i++) {
+        var i = document.createElement("IMG");
+        i.setAttribute("src", path + status + "_" + i + ".png");
+        i.setAttribute("id", status + "_" + i);
+        document.body.appendChild(i);
+    }
+}
+
+loadEatingTed("Good");
+loadEatingTed("Bad");
 
 // load background image
 var bg = document.getElementById("bg");
