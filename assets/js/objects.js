@@ -58,6 +58,14 @@ var objects = [
         src: "./assets/Teddy/Ted_1.png"
     },
     {
+        type: "Good_4",
+        src: "./assets/Teddy/EatGood_4.png"
+    },
+    {
+        type: "Bad_4",
+        src: "./assets/Teddy/EatBad_4.png"
+    },
+    {
         type: "bg",
         src: "./assets/Background/gif/StartScreenBg.gif"
     },
@@ -72,7 +80,6 @@ objects.forEach(function(item) {
 
 // load teddy image
 var tedImg = document.getElementById("ted_down");
-
 
 // load background image
 var bg = document.getElementById("bg");

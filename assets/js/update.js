@@ -74,9 +74,9 @@ function updateGameArea() {
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {
-                    document.getElementById("ted").src= "assets/Teddy/EatGood_4.png";
+                    tedImg = document.getElementById("Good_4");
                 } else {
-                    document.getElementById("ted").src= "assets/Teddy/EatBad_4.png";
+                    tedImg = document.getElementById("Bad_4");
                 }
             } else {
                 currEnergy = MAX_ENERGY;
