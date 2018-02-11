@@ -25,7 +25,7 @@ function updateGameArea() {
         player.angle = 0;
         player.speed = 0;
         if (food.x >= 480) {
-            food.foodNum = getRandomInt(4);
+            food.foodNum = getRandomInt(FOOD_ITEMS);
             food.x = 0;
         }
 

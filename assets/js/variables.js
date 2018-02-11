@@ -24,4 +24,6 @@ var alive = true;
 
 const BUTTON_INTERVAL = 16;
 
+const FOOD_ITEMS = 9;
+
 var bg_music = new Audio('Podington_Bear_-_Funk.mp3').play();
