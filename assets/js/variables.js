@@ -5,6 +5,8 @@ var chinInterval;
 var currEnergy = -100;
 var constEnergyLoss = 0.2;
 
+var canWidth;
+var canHeight;
 
 // health bar
 const BAR_WIDTH = 20;

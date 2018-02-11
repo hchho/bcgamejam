@@ -1,5 +1,6 @@
 function updateGameArea() {
-    console.log(state);
+    
+    // console.log(state);
     // console.log(isChinUp);
     // console.log(currEnergy);
     if (state == END) {
