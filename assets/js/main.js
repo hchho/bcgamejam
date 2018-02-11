@@ -1,3 +1,17 @@
+$(".replay").hide();
+$(".start").click(function() {
+    $(".menu").hide();
+    state = PLAY;
+    startGame();
+});
+
+$(".replay").click(function() {
+    $(".menu").hide();
+    $(".replay").hide();
+    state = PLAY;
+    startGame();
+});
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
