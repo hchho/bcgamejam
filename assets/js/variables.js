@@ -28,4 +28,11 @@ const BUTTON_INTERVAL = 16;
 
 const FOOD_ITEMS = 9;
 
-var bg_music = new Audio('Podington_Bear_-_Funk.mp3').play();
+var bg_music = new Audio('Podington_Bear_-_Funk.mp3');
+
+bg_music.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
+bg_music.play();
