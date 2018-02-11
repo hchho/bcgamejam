@@ -68,8 +68,7 @@ objects.forEach(function(item) {
 
 // load teddy image
 var tedImg = document.getElementById("ted");
-tedImg.width = "200";
-tedImg.height = "400";
+
 
 // load background image
 var bg = document.getElementById("bg");

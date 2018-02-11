@@ -1,24 +1,18 @@
 var food;
 var player;
-var pointCounter;
-var strength;
 var isChinUp;
 var chinInterval;
-
-var counter = 0;
 var currEnergy = -100;
 var constEnergyLoss = 0.2;
-var currStrength = -100;
-var strengthLoss = 0.1;
+
 
 // health bar
 const BAR_WIDTH = 20;
 const BAR_X = 10;
 const BAR_Y = 110;
 const MAX_ENERGY = -100;
-const ENERGY_LOSS = 5;
+const ENERGY_LOSS = 0.25;
 const chinUpDist = 100;
-const STRENGTH_GAIN = 2.0;
 
 // game states
 const MAIN_MENU = 0;
