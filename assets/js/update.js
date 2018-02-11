@@ -24,7 +24,8 @@ function updateGameArea() {
             food.x = 0;
         }
 
-        if(chinInterval > BUTTON_INTERVAL && (myGameArea.keys && myGameArea.keys[38])) {
+        if(chinInterval > BUTTON_INTERVAL 
+            && (myGameArea.keys && myGameArea.keys[38])) {
             if (isChinUp) { // going down
                 tedImg = document.getElementById("ted_down");
                 isChinUp = false;
