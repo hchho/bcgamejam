@@ -4,6 +4,7 @@ var isChinUp;
 var chinInterval;
 var currEnergy = -200;
 var constEnergyLoss = 0.05;
+// var constEnergyLoss = 5;
 var counter = 0;
 var highScore = 0;
 var level = 1;

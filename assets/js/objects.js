@@ -51,19 +51,19 @@ var objects = [
     },
     {
         type: "ted_down",
-        src: "./assets/Teddy/Ted_0.png"
+        src: "./assets/Teddy/teddydown.svg"
     },
     {
         type: "ted_up",
-        src: "./assets/Teddy/Ted_1.png"
+        src: "./assets/Teddy/teddyup.svg"
     },
     {
         type: "Good_4",
-        src: "./assets/Teddy/EatGood_4.png"
+        src: "./assets/Teddy/EatGood.svg"
     },
     {
         type: "Bad_4",
-        src: "./assets/Teddy/EatBad_4.png"
+        src: "./assets/Teddy/EatBad.svg"
     },
     {
         type: "bg",

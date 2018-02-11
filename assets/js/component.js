@@ -28,14 +28,14 @@ function component(width, height, color, x, y, type) {
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
                           ctx.fillRect(this.x, this.y, BAR_WIDTH, currEnergy);
                       } else if (type == "pointCounter") {
-                          ctx.font ="24px Arial";
+                          ctx.font ="24px Krungthep";
                           ctx.fillText("Points: " + counter, x, y);
                       } else if (type == "highScoreBoard") {
-                          ctx.font ="24px Arial";
-                          ctx.fillText("High Score: " + highScore, x, y);
+                          ctx.font ="24px Krungthep";
+                          // ctx.fillText("High Score: " + highScore, x, y);
                       } else if (type =="level") {
-                          ctx.font = "24px Arial";
-                          ctx.fillText("Level: " + level, x, y);
+                          ctx.font = "24px Krungthep";
+                          // ctx.fillText("Level: " + level, x, y);
                       }
 
 
