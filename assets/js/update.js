@@ -40,7 +40,7 @@ function updateGameArea() {
                 
                 //increases difficulty based on counter
                 if(counter == leveler) {
-                    leveler += leveler;
+                    leveler += 5;
                     level++;
                     constEnergyLoss += 0.08;
                 }
@@ -80,7 +80,7 @@ function updateGameArea() {
 
 
         // if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )){
-        if (isChinUp && (food.x > canWidth/2 - HIT_RANGE && food.x < canWidth/2 + HIT_RANGE )){
+        if (isChinUp && (food.x > canWidth/2 - HIT_RANGE && food.x < canWidth/2 - 35 )){
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {

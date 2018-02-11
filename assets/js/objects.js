@@ -12,17 +12,17 @@ var objects = [
     {
         type: "fish",
         src: "./assets/Food/fish.png",
-        energy: 20
+        energy: 30
     },
     {
         type: "steak",
         src: "./assets/Food/steak.png",
-        energy: 25
+        energy: 50
     },
     {
         type: "drumstick",
         src: "./assets/Food/drumstick.png",
-        energy: 20
+        energy: 40
     },
     {
         type: "chips",

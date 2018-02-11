@@ -28,13 +28,13 @@ function component(width, height, color, x, y, type) {
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
                           ctx.fillRect(this.x, this.y, BAR_WIDTH, currEnergy);
                       } else if (type == "pointCounter") {
-                          ctx.font ="40px Arial";
+                          ctx.font ="24px Arial";
                           ctx.fillText("Points: " + counter, x, y);
                       } else if (type == "highScoreBoard") {
-                          ctx.font ="40px Arial";
+                          ctx.font ="24px Arial";
                           ctx.fillText("High Score: " + highScore, x, y);
                       } else if (type =="level") {
-                          ctx.font = "40px Arial";
+                          ctx.font = "24px Arial";
                           ctx.fillText("Level: " + level, x, y);
                       }
 
@@ -45,7 +45,7 @@ function component(width, height, color, x, y, type) {
                     var rand = Math.random(0, 1) * 50;
                   if (state == PLAY) {
                     bouncer++;
-                    this.y += this.speed * Math.sin(bouncer / 4) * 5;
+                    this.y += this.speed * Math.sin(bouncer / 6) * 5;
                     this.x += this.speed * Math.cos(this.angle);
                   }
 

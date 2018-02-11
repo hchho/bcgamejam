@@ -32,9 +32,9 @@ function startGame() {
     healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
     // bg = new component(0, 0, "blue", canWidth, canHeight, "bg");
     // strength = new component(BAR_WIDTH, currStrength, "red", 40, BAR_Y, "strength");
-    pointCounter = new component(0,0, "blue", 150, 550, "pointCounter");
-    highScoreBoard = new component(0,0,"blue", 150, 650, "highScoreBoard");
-    difficultyLevel = new component(0,0,"blue", 150, 600, "level");
+    pointCounter = new component(0,0, "blue", 35, 38, "pointCounter");
+    highScoreBoard = new component(0,0,"blue", 35, 82, "highScoreBoard");
+    difficultyLevel = new component(0,0,"blue", 35, 58, "level");
     isChinUp = false;
     chinInterval = 0;
 
