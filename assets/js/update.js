@@ -1,14 +1,14 @@
 function updateGameArea() {
-    
+
     // console.log(state);
     // console.log(isChinUp);
     // console.log(currEnergy);
     if (state == END) {
         // console.log("hel");
-        $(".menu").show();
+        $(".end").show();
         // $(".menuImg").hide();
-        $(".start").hide();
-        $(".replay").show();
+        // $(".start").hide();
+        // $(".replay").show();
         // $('body > :not(.replay)').hide();
     }
 
@@ -66,8 +66,8 @@ function updateGameArea() {
 
         if (state == END) {
             console.log("END");
-            $(".menu").show();
-            $('.replay').show();
+            // $(".menu").show();
+            $('.play-again').show();
             // myGameArea.stop();
         }
 

@@ -1,17 +1,17 @@
 
 // $(document).ready(function () {
-$(".replay").hide();
+$(".end").hide();
 $(".start").click(function() {
     $(".menu").hide();
-    $(".background").hide();
+    // $(".background").hide();
     state = PLAY;
     startGame();
 });
 
-$(".replay").click(function() {
+$(".play-again").click(function() {
     $(".menu").hide();
-    $(".background").hide();
-    $(".replay").hide();
+    // $(".background").hide();
+    $(".end").hide();
     state = PLAY;
     // startGame();
 });
@@ -33,6 +33,7 @@ function startGame() {
     food = new component(30, 30, "red", 0, 0, "food");
     player = new component(0, 0, "blue", 0, 0, "player");
     healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
+    // bg = new component(0, 0, "blue", canWidth, canHeight, "bg");
     // strength = new component(BAR_WIDTH, currStrength, "red", 40, BAR_Y, "strength");
     pointCounter = new component(0,0, "blue", 150, 400, "pointCounter");
     isChinUp = false;
@@ -52,6 +53,7 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
+        // this.context.drawImage(bg, 0, 0, canWidth, canHeight);
         window.addEventListener('keydown', function (e) {
             e.preventDefault();
             myGameArea.keys = (myGameArea.keys || []);
@@ -60,6 +62,7 @@ var myGameArea = {
         window.addEventListener('keyup', function (e) {
             myGameArea.keys[e.keyCode] = (e.type == "keydown");
         })
+
 
     },
     stop : function() {
