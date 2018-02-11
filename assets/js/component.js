@@ -7,7 +7,7 @@ function component(width, height, color, x, y, type) {
                 var bouncer = 0;
                 this.x = x;
                 this.y = y;
-                this.foodNum = getRandomInt(4);
+                this.foodNum = getRandomInt(FOOD_ITEMS);
                 //update every 20 milliseconds
                 this.update = function() {
                     ctx = myGameArea.context;
