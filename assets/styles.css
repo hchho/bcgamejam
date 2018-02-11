@@ -66,3 +66,6 @@ img {
 .play-again:active {
     background-color: #eeeb69;
 }
+.trainer {
+    width: 70%;
+}
