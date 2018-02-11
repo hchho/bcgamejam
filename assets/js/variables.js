@@ -32,9 +32,14 @@ const HIT_RANGE = 60;
 
 var bg_music = new Audio('assets/sounds/Podington_Bear_-_Funk.mp3');
 
+var grunt = new Audio('assets/sounds/grunt.mp3');
+
+var eat_good = new Audio('assets/sounds/eat_good.wav');
+
+var eat_bad = new Audio('assets/sounds/eat_bad.wav');
+
 bg_music.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
 }, false);
 
-bg_music.play();
