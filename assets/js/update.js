@@ -13,8 +13,7 @@ function updateGameArea() {
     }
 
     if (!alive) {
-        highScore = counter;
-        counter = 0;
+        
         console.log("dead");
         state = END;
         isChinUp = false;
@@ -46,11 +45,20 @@ function updateGameArea() {
                 tedImg = document.getElementById("ted_up");
                 isChinUp = true;
                 counter++;
+                
+                //increases difficulty based on counter
+                if(counter == leveler) {
+                    leveler += leveler;
+                    level++;
+                    constEnergyLoss += 0.08;
+                }
+                
+                    
+                
                 currEnergy += ENERGY_LOSS;
                 var grunt = new Audio('grunt.mp3').play();
             }
             chinInterval = 0;
-
         }
 
 
@@ -63,7 +71,10 @@ function updateGameArea() {
 
         if (currEnergy > 0) {
             currEnergy = 0;
-            highScore = counter;
+            if (counter >= highScore) {
+                highScore = counter;
+            }
+            counter = 0;
             alive = false;
          myGameArea.stop();
         }
@@ -96,6 +107,7 @@ function updateGameArea() {
         healthBar.update();
         pointCounter.update();
         highScoreBoard.update();
+        difficultyLevel.update();
         chinInterval++;
     }
 }

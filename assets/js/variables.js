@@ -2,10 +2,12 @@ var food;
 var player;
 var isChinUp;
 var chinInterval;
-var currEnergy = -100;
-var constEnergyLoss = 0.2;
+var currEnergy = -200;
+var constEnergyLoss = 0.05;
 var counter = 0;
 var highScore = 0;
+var level = 1;
+var leveler = 5;
 
 var canWidth;
 var canHeight;
@@ -13,9 +15,9 @@ var canHeight;
 // health bar
 const BAR_WIDTH = 20;
 const BAR_X = 10;
-const BAR_Y = 110;
-const MAX_ENERGY = -100;
-const ENERGY_LOSS = 0.25;
+const BAR_Y = 210;
+const MAX_ENERGY = -200;
+const ENERGY_LOSS = 0.15;
 const chinUpDist = 100;
 
 // game states
