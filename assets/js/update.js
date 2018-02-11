@@ -1,6 +1,10 @@
 function updateGameArea() {
+    console.log("leveler: " + leveler);
+    console.log("level: " + level);
     if (state == END) {
         $(".end").show();
+        $('.high-score').text("HIGH SCORE");
+        $('.score').text(highScore);
     }
 
     if (!alive) {
@@ -12,7 +16,7 @@ function updateGameArea() {
         tedImg = document.getElementById("ted_down");
         currEnergy = MAX_ENERGY;
         alive = true;
-
+        // chinInterval = 0;
     }
 
     if (state == PLAY) {
@@ -34,16 +38,16 @@ function updateGameArea() {
                 tedImg = document.getElementById("ted_up");
                 isChinUp = true;
                 counter++;
-                
+
                 //increases difficulty based on counter
                 if(counter == leveler) {
                     leveler += 5;
                     level++;
                     constEnergyLoss += 0.08;
                 }
-                
-                    
-                
+
+
+
                 currEnergy += ENERGY_LOSS;
                 grunt.play();
             }
