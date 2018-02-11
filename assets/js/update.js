@@ -16,6 +16,7 @@ function updateGameArea() {
         console.log("dead");
         state = END;
         isChinUp = false;
+        tedImg = document.getElementById("ted_down");
         currEnergy = MAX_ENERGY;
         alive = true;
         // state = MAIN_MENU;
