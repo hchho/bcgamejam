@@ -25,11 +25,13 @@ function updateGameArea() {
         }
 
         if(chinInterval > BUTTON_INTERVAL && (myGameArea.keys && myGameArea.keys[38])) {
-
-
             if (isChinUp) { // going down
                 tedImg = document.getElementById("ted_down");
                 isChinUp = false;
+                // eat_good.pause();
+                // eat_good.currentTime = 0;
+                // eat_bad.pause();
+                // eat_bad.currrentTime = 0;
 
             } else { // going up
                 tedImg = document.getElementById("ted_up");
@@ -83,9 +85,17 @@ function updateGameArea() {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {
                     eat_good.play();
+                    eat_bad.pause();
+                    eat_bad.currentTime = 0;
+                    grunt.pause();
+                    grunt.currentTime = 0;
                     tedImg = document.getElementById("Good_4");
                 } else {
                     eat_bad.play();
+                    eat_good.pause();
+                    eat_good.currentTime = 0;
+                    grunt.pause();
+                    grunt.currentTime = 0;
                     tedImg = document.getElementById("Bad_4");
                 }
             } else {
