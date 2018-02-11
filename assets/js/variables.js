@@ -42,6 +42,7 @@ var eat_good = new Audio('assets/sounds/eat_good.wav');
 
 var eat_bad = new Audio('assets/sounds/eat_bad.wav');
 
+var just_do_it = new Audio('assets/sounds/just_do_it.mp3');
 bg_music.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();

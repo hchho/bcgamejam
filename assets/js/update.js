@@ -28,10 +28,6 @@ function updateGameArea() {
             if (isChinUp) { // going down
                 tedImg = document.getElementById("ted_down");
                 isChinUp = false;
-                // eat_good.pause();
-                // eat_good.currentTime = 0;
-                // eat_bad.pause();
-                // eat_bad.currrentTime = 0;
 
             } else { // going up
                 tedImg = document.getElementById("ted_up");
@@ -104,6 +100,10 @@ function updateGameArea() {
             food.foodNum = getRandomInt(FOOD_ITEMS);
             food.x = 0;
             console.log("score");
+        }
+
+        if (currEnergy > MAX_ENERGY / 2) {
+            just_do_it.play();
         }
         player.update();
         food.newPos();
