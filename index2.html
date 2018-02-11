@@ -19,16 +19,12 @@
 
             var food;
             var player;
-            var pointCounter;
-            var strength;
             var isChinUp;
             var chinInterval;
 
-            var counter = 0;
             var currEnergy = -100;
             var constEnergyLoss = 0.2;
-            var currStrength = -100;
-            var strengthLoss = 0.1;
+           
             // var constEnergyLoss = 2;
 
             var foodObjects = [
@@ -80,9 +76,8 @@
             const BAR_X = 10;
             const BAR_Y = 110;
             const MAX_ENERGY = -100;
-            const ENERGY_LOSS = 5;
+            const ENERGY_LOSS = 0.25;
             const chinUpDist = 100;
-            const STRENGTH_GAIN = 2.0;
 
             // game states
             const MAIN_MENU = 0;
@@ -108,8 +103,6 @@
                 food = new component(30, 30, "red", 0, 0, "food");
                 player = new component(0, 0, "blue", 414/7, 245, "player");
                 healthBar = new component(BAR_WIDTH, currEnergy, "blue", BAR_X, BAR_Y, "healthBar");
-                strength = new component(BAR_WIDTH, currStrength, "red", 40, BAR_Y, "strength");
-                pointCounter = new component(0,0, "blue", 150, 400, "pointCounter");
                 isChinUp = false;
                 chinInterval = 0;
 
@@ -149,9 +142,11 @@
                 this.height = height;
                 this.speed = 3;
                 this.angle = 0;
+                var bouncer = 0;
                 this.x = x;
                 this.y = y;
                 this.foodNum = getRandomInt(4);
+                //update every 20 milliseconds
                 this.update = function() {
                     ctx = myGameArea.context;
                     ctx.save();
@@ -168,27 +163,22 @@
                           ctx.fillStyle = color;
                           ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
                           ctx.fillRect(this.x, this.y, BAR_WIDTH, currEnergy);
-                      } else if(type == "pointCounter") {
-                          ctx.font="40px Arial";
-                          ctx.fillText("Points: " + counter, x, y);
-                      } else if (type == "strength") {
-                          ctx.fillStyle = color;
-                          ctx.strokeRect(this.x, this.y, BAR_WIDTH, MAX_ENERGY);
-                        ctx.fillRect(this.x, this.y, BAR_WIDTH, currStrength);
-                      }
+                      } 
 
 
                     ctx.restore();
                 }
                 this.newPos = function(time) {
+                    var rand = Math.random(0, 1) * 50;
                   if (state == PLAY) {
-                    this.y += this.speed * Math.sin(this.angle)
+                    bouncer++;
+                    this.y = this.speed * Math.sin(bouncer / 4) * 5;
                     this.x += this.speed * Math.cos(this.angle);
                   }
 
                 }
             }
-
+            //will run every 20 ms interval, called from myGameArea.start
             function updateGameArea() {
               // console.log(state);
               // console.log(isChinUp);
@@ -218,42 +208,33 @@
                 if (food.x >= 480) {
                     food.foodNum = getRandomInt(4);
                     food.x = 0;
+                    food.y = getRandomInt(50);
                 }
                   
                 if(chinInterval > BUTTON_INTERVAL && (myGameArea.keys && myGameArea.keys[38])) {
                     
-                    if(currStrength <= -100 || isChinUp) {
+                    
                         if (isChinUp) { // going down
                             // player.y += chinUpDist;
                             document.getElementById("ted").src= "assets/Ted_1.png"; // change ted image
 
                             isChinUp = false;
-                            currStrength = 0;
                         } else { // going up
                             // player.y -= chinUpDist;
                             document.getElementById("ted").src= "assets/Ted_2.png";
-                            currStrength = 0;
-                            counter++;
                             isChinUp = true;
                             currEnergy += ENERGY_LOSS;
                             var grunt = new Audio('grunt.mp3').play();
                         }
                         chinInterval = 0;
-                    }
-                }
-                  
-                  //pressing spacebar rejuvinates strength
-                if(myGameArea.keys && myGameArea.keys[32]) {
-                    if (currStrength <= -100) {
-                        currStrength = -100;
-                    }
-                    if (!isChinUp) {
-                        currStrength -= STRENGTH_GAIN;
-                    }
+                    
                 }
 
                 if (alive) {
                     currEnergy += constEnergyLoss;
+                    if (isChinUp) {
+                        currEnergy += ENERGY_LOSS;
+                    }
                 }
 
                 if (currEnergy > 0) {
@@ -261,8 +242,7 @@
                     alive = false;
                     myGameArea.stop();
                 }
-
-                if (isChinUp && (food.x > 210 && food.x < 255)) {
+                if (isChinUp && (food.y < 18 && food.y > 13 && food.x > 210 && food.x < 255 )) {
                     if (currEnergy - food.energyGain >= MAX_ENERGY) {
                         currEnergy -= food.energyGain;
                     } else {
@@ -276,8 +256,6 @@
                 food.newPos();
                 food.update();
                 healthBar.update();
-                  strength.update();
-                  pointCounter.update();
                 chinInterval++;
               }
             }
