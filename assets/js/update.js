@@ -76,8 +76,10 @@ function updateGameArea() {
             if (currEnergy - food.energyGain >= MAX_ENERGY) {
                 currEnergy -= food.energyGain;
                 if (food.energyGain > 0) {
+                    var eat = new Audio('assets/sounds/eat_good.wav').play();
                     tedImg = document.getElementById("Good_4");
                 } else {
+                    eat = new Audio('assets/sounds/eat_bad.wav').play();
                     tedImg = document.getElementById("Bad_4");
                 }
             } else {
