@@ -46,9 +46,10 @@ var just_do_it = new Audio('assets/sounds/just_do_it.mp3');
 
 var button_click = new Audio('assets/sounds/button_clicked.wav');
 
-bg_music.addEventListener('ended', function() {
-    this.currentTime = 0;
-    this.play();
-}, false);
+// bg_music.addEventListener('ended', function() {
+//     this.currentTime = 0;
+//     this.play();
+// }, false);
 
-        bg_music.play();
+bg_music.loop = true;
+bg_music.play();

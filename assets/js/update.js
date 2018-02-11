@@ -105,6 +105,10 @@ function updateGameArea() {
         if (currEnergy > MAX_ENERGY / 2) {
             just_do_it.play();
         }
+        if (just_do_it.currentTime >= 3.30) {
+            just_do_it.pause();
+            just_do_it.currentTime = 0;
+        }
         player.update();
         food.newPos();
         food.update();
