@@ -1,6 +1,6 @@
 function updateGameArea() {
-    console.log("leveler: " + leveler);
-    console.log("level: " + level);
+    // console.log("leveler: " + leveler);
+    // console.log("level: " + level);
     if (state == END) {
         $(".end").show();
         $('.high-score').text("HIGH SCORE");
@@ -28,7 +28,7 @@ function updateGameArea() {
             food.x = 0;
         }
 
-        if(chinInterval > BUTTON_INTERVAL 
+        if(chinInterval > BUTTON_INTERVAL
             && ((myGameArea.keys && myGameArea.keys[38]) || myGameArea.touch)) {
             if (isChinUp) { // going down
                 tedImg = document.getElementById("ted_down");
