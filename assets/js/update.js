@@ -29,7 +29,7 @@ function updateGameArea() {
         }
 
         if(chinInterval > BUTTON_INTERVAL
-            && ((myGameArea.keys && myGameArea.keys[38]) || myGameArea.touch)) {
+            && ((myGameArea.keys && myGameArea.keys[32]) || myGameArea.touch)) {
             if (isChinUp) { // going down
                 tedImg = document.getElementById("ted_down");
                 isChinUp = false;
@@ -42,6 +42,7 @@ function updateGameArea() {
                 //increases difficulty based on counter
                 if(counter == leveler) {
                     leveler += 5;
+                    food.speed += 0.25;
                     level++;
                     constEnergyLoss += 0.08;
                 }
@@ -67,13 +68,15 @@ function updateGameArea() {
             if (counter >= highScore) {
                 highScore = counter;
             }
+            food.speed = 3;
             counter = 0;
             alive = false;
 //            myGameArea.stop();
         }
 
         if (state == END) {
-            console.log("END");
+            // console.log("END");
+
             $(".menu").show();
             $('.replay').show();
             // myGameArea.stop();
@@ -103,7 +106,7 @@ function updateGameArea() {
                 currEnergy = MAX_ENERGY;
             }
             food.foodNum = getRandomInt(FOOD_ITEMS);
-            food.x = 0;
+            food.x = -10;
         }
 
         if (currEnergy > MAX_ENERGY / 2) {
