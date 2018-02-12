@@ -54,6 +54,16 @@ img {
     transform: translateX(-50%);
     font-size: 3rem;
 }
+.spacebar {
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    bottom: 10%;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    /* font-size: 1.5rem; */
+}
 .title {
     position: absolute;
     z-index: 1;
