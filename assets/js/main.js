@@ -3,6 +3,21 @@ $(".buttons").click(function () {
     console.log("clicked");
 });
 
+$('body').keyup(function(e){
+   if(e.keyCode == 32){
+       if (state == MAIN_MENU) {
+           state = PLAY;
+           $(".menu").hide();
+           startGame();
+       }
+       if (state == END) {
+           $(".menu").hide();
+           $(".end").hide();
+           state = PLAY;
+       }
+   }
+});
+
 // Updating .overlay on button clicks
 $(".end").hide();
 $(".start").click(function () {
